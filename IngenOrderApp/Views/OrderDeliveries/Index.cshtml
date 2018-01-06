@@ -1,0 +1,46 @@
+﻿@{
+    
+    if (ViewBag.IsLayout == "N")
+    {
+        Layout = null;
+    }
+    
+}
+
+
+<script src="~/Scripts/IngenScripts/orderDelivery_js.js"></script>
+
+<div class="row">
+    <div class="col-md-6 pull-left margin-top-0">
+        <h3>Manage Order Delivery</h3>
+    </div>
+
+    <div class="col-md-6 margin-top-0">
+        <button class="btn btn-sm btn-success col-xs-2 pull-right margin-top-10 btn-add" data-toggle="modal" data-target="#CustomerModal">
+            <small><span class="glyphicon glyphicon-plus pull-left"></span></small> Add New
+        </button>
+    </div>
+</div>
+
+<hr />
+
+
+<table id="tbl_ordeDelivery" class="table table-striped margin-top-10" cellspacing="0" width="100%">
+    @*table-bordered *@
+    <thead>
+        <tr>
+            <td></td>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Additional Rate</th>
+            <th>Hours</th>            
+            <th></th>
+        </tr>
+    </thead>
+</table>
+
+
+
+
+
+

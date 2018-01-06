@@ -1,0 +1,164 @@
+﻿
+<div class="row">
+  <div class="col-md-6 pull-left margin-top-0">
+   <span>
+       <h3>Manage Customers</h3></span>
+
+  </div>
+  <div class="col-md-6 margin-top-0">
+      <button class="btn btn-sm btn-success col-xs-2 pull-right margin-top-10">
+         <small><span class="glyphicon glyphicon-plus pull-left"></span></small> Add New
+      </button>
+  </div>
+</div>
+
+<hr />
+
+<div class="row margin-buttom-20 margin-top-15">
+  <div class="col-md-6 pull-left">
+          
+          <div class="btn-group" role="group" aria-label="Justified button group">
+              
+                  <button  id="All" type="button" class="btn action-btn">All</button>            
+            
+                  <button id="Active" type="button" class="btn action-btn">Active</button>
+             
+                  <button id="Closed" type="button"  class="btn action-btn">Close</button>
+              
+          </div>
+    
+  </div>
+    <div class="col-md-6">
+        <div class="dropdown pull-right">
+            <button class="btn batch-action dropdown-toggle pull-right" type="button" data-toggle="dropdown">
+               Batch Actions
+             <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="active" href="#">Link1</a></li>
+                <li><a class="active" href="#">Link2</a></li>
+                <li><a class="active" href="#">Link3</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<table id="example" class="table table-striped table-bordered margin-top-10" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <td>Sl No</td>
+            <th>Code</th>            
+            <th>Contact Person</th>
+            <th>Contact Number</th>   
+            <th>Email</th>       
+            <th>Status</th>  
+            <th></th>      
+        </tr>
+    </thead>
+       
+    </table>
+
+
+<script>
+
+    $(document).ready(function(){
+        $('.action-btn').click(function () {
+
+            var id = this.id;
+            //alert(id);
+            $(this).css({'background':'#fff','color':'#000','border':'1px solid #19c6de','color':'blue'});
+            $(this).siblings().css({ 'background': '#19c6de', 'color': '#fff' });
+          
+            //$(this).removeClass("action-nonclick");  // ({ 'background': '#fff', 'color': '#000' });
+            //$(this).siblings().removeClass("action-nonclick");
+            //$(this).removeClass("action-click");
+           
+            GetCustomerInfo(id);
+        });
+    });
+    $(function () {
+       
+        // $(".datepicker").datepicker({ dateFormat: "dd-M-yy", maxDate: '0' }).val();
+        //document.getElementById("All").classList.remove('action-nonclick');
+        //document.getElementById("All").classList.add('action-click');
+        GetCustomerInfo(null);
+    });
+    function GetCustomerInfo(option) {
+        try {
+
+            var _url = "/Home/LoadData/";
+           // alert(_url);
+
+            var t = $('#example').DataTable({
+                //for row index
+                "columnDefs": [{
+                    "targets": [0]
+                },
+                ],
+
+                //for only 2nd column order.ommit this so any column now searcable
+                "order": [[1, 'asc']],
+                "destroy": true, //must to destroy after load to avoid 'cannot reinitialise datatable' problem
+                "processing": true, // for show progress bar
+                "serverSide": true, // for process server side
+                "filter": false, // this is for disable filter (search box)
+                "orderMulti": false, // for disable multiple column at once
+                "lengthChange": false, //stop filter by 10,15,20,50 row on per page
+
+
+                "ajax": {
+                    "url": "/Home/LoadData/",
+                    "type": "POST",
+                    "datatype": "json",
+                    "data": {
+                        "status": option
+                    }
+                },
+
+
+                "columns": [
+                           {
+                               "data": null, "name": "Sl No", "display": "none",
+                               render: function (data, type, row, meta) {
+                                   return meta.row + meta.settings._iDisplayStart + 1;
+                               }
+                           },   // it is Sr No and data=null I set to prevent display error alert datatables requested unknown parameter '0' for row 0 column 0, also should Display:none
+                        { "data": "Code", "name": "Code", "autoWidth": true },
+
+                        { "data": "ContactPerson", "name": "Contact Person", "autoWidth": true },
+                        { "data": "ContactNumber", "name": "Contact Number", "autoWidth": true },
+
+                        { "data": "Email", "name": "Email", "autoWidth": true },
+                        { "data": "Status", "name": "Status", "autoWidth": true },
+
+                        {
+                            "data": "Id", "name": "", "display": "none",
+                            "render": function (data, type, row, meta) {
+                                if (type === 'display') {
+
+                                    data = '<select id="dynamic_select" style="width:100% !important" name="dynamic_select">\n\
+                                                 <option id="0" value="">Select</option/>\n\
+                                                 <option id="1" value="test.php">1</option/>\n\
+                                                 <option id="2" value="test2.php">13</option/>\n\
+                                                 <option id="31" value="test3.php">12</option/>\n\
+                                                  </select>';
+                                   
+                                }
+                                return data;
+                            }
+                        },
+
+                ]
+            });
+
+        }
+        catch (err) {
+            alert(err.message);
+        }
+    }
+
+
+ 
+</script>
+
+

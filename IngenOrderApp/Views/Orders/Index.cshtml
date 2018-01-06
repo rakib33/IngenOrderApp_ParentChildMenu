@@ -1,0 +1,147 @@
+﻿@model IEnumerable<IngenOrderApp.Models.Order>
+
+@{
+    ViewBag.Title = "Order Index";
+}
+
+<h2>Order Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDelivery.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deadline)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Instructions)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdditionalInstructions)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NotefromCustomer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalImages)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiscountPercent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Currency)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AmountInUSD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PreferredFormat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PreferredFileType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_Reference)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderDelivery.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deadline)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccountType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Instructions)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdditionalInstructions)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NotefromCustomer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalImages)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiscountPercent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Currency)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AmountInUSD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaymentStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PreferredFormat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PreferredFileType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer_Reference)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Reference }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Reference }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Reference })
+        </td>
+    </tr>
+}
+
+</table>

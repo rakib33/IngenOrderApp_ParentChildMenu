@@ -1,0 +1,222 @@
+﻿@model IngenOrderApp.Models.Customer
+
+
+@using (Html.BeginForm("Create", "Customer",new { ReturnUrl = ViewBag.ReturnUrl },
+            FormMethod.Post, new { @class = "form-horizontal", name = "CustomerForm", id = "CustomerId" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model=>model.Reference)
+
+        @*<input type="text" id="country" />
+        <input  id="country_code" />*@
+
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(model => model.Code, new { required = "required", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Code)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ContactPerson, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(model => model.ContactPerson, new { required = "required", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ContactPerson)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Company, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(model => model.Company, new { required = "required", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Company)
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(model => model.Country, new { required = "required", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Country)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CountryCode, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(model => model.CountryCode, new { id = "Country_code", @readonly = "readonly", required = "required", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CountryCode)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ContactNumber, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(model => model.ContactNumber, new { required = "required", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ContactNumber)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(model => model.Email, new { required = "required", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Website, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(model => model.Website, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Website)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-6">                       
+                        @Html.DropDownList("Status", new List<SelectListItem>
+                        {
+                               new SelectListItem{ Text="Active", Value = "Active" },
+                               new SelectListItem{ Text="Closed", Value = "Closed" },
+                         }, "--Select Option--", new { @class = "from-control status", required = "required", })
+
+
+                        @Html.ValidationMessageFor(model => model.Status)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LastOrdered, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-6">
+                        @*@Html.TextBoxFor(model => model.LastOrdered, new { @class = "form-control" })*@
+
+                        <div class="input-group">
+                            <div class='input-group date' id='datetimepicker1'>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                                <span>
+                                    @Html.TextBoxFor(model => model.LastOrdered,"{0:dd-MMM-yy}", new { required = "required", @class = "form-control datepicker" }) @*name = "date",*@
+                                </span>                              
+                            </div>
+                            @Html.ValidationMessageFor(model => model.LastOrdered)
+                         </div>
+                      
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AccountType, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-6">
+                        @*@Html.TextBoxFor(model => model.AccountType, new { @class = "form-control" })*@
+                        @Html.DropDownList("AccountType", new List<SelectListItem>
+                        {
+                               new SelectListItem{ Text="Pre Paid", Value = "Pre Paid" },
+                               new SelectListItem{ Text="Post Paid", Value = "Post Paid" },
+                         }, "--Select Option--", new { @class = "from-control status", required = "required", })
+
+
+                        @Html.ValidationMessageFor(model => model.AccountType)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PaymentType, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-6">
+                        @*@Html.TextBoxFor(model => model.PaymentType, new { @class = "form-control" })*@
+                        @Html.DropDownList("PaymentType", new List<SelectListItem>
+                        {
+                               new SelectListItem{ Text="Pre Paid", Value = "Pre Paid" },
+                               new SelectListItem{ Text="Post Paid", Value = "Post Paid" },
+                         }, "--Select Option--", new { @class = "from-control status", required = "required", })
+
+
+                        @Html.ValidationMessageFor(model => model.PaymentType)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Currency, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-6">
+
+                        @Html.DropDownList("Currency", new List<SelectListItem>
+                        {
+                               new SelectListItem{ Text="USD", Value = "USD" },
+                               new SelectListItem{ Text="BDT", Value = "BDT" },
+                         }, "--Select Option--", new { @class = "from-control status", required = "required", })
+
+                        @Html.ValidationMessageFor(model => model.Currency)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AccountCatagory, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(model => model.AccountCatagory, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.AccountCatagory)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Industry, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(model => model.Industry, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Industry)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EditingNotes, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-6">
+                        @Html.TextAreaFor(model => model.EditingNotes, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.EditingNotes)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AdditionalInstructions, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-6">
+                        @Html.TextAreaFor(model => model.AdditionalInstructions, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.AdditionalInstructions)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PreferredFileType, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-6">
+                    
+                        @Html.DropDownList("PreferredFileType", new List<SelectListItem>
+                        {
+                               new SelectListItem{ Text="JPG", Value = "JPG" },
+                               new SelectListItem{ Text="PSD", Value = "PSD" },
+                               new SelectListItem{ Text="PNG", Value = "PNG" },
+                         }, "--Select Option--", new { @class = "from-control status", required = "required", })
+
+
+                        @Html.ValidationMessageFor(model => model.PreferredFileType)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DiscountRate, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(model => model.DiscountRate, new { @class = "form-control decimal" })
+                        @Html.ValidationMessageFor(model => model.DiscountRate)
+                    </div>
+                </div>               
+            </div>
+        </div> 
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="col-md-offset-5 col-md-10">
+                        <input type="submit" value="Submit" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+           
+        </div>       
+    </div>
+      
+}

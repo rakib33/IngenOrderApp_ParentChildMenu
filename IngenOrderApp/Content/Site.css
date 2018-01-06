@@ -1,0 +1,417 @@
+﻿body {
+    padding-top: 0px !important; /*50px;*/ 
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+
+.margin-top-0 { margin-top: 0px !important; }
+.margin-top-05 { margin-top: 5px; }
+.margin-top-10 { margin-top: 10px; } /*1.0em;*/
+.margin-top-15 { margin-top: 15px; }
+
+.margin-buttom-05 { margin-bottom: 5px; }
+.margin-buttom-10 { margin-bottom: 10px; } /*1.0em;*/
+.margin-buttom-15 { margin-bottom: 15px; }
+.margin-buttom-20 { margin-bottom: 20px; }
+
+hr {
+     margin-top: 0px !important; 
+     margin-bottom: 0px !important; 
+}
+
+
+
+.btn-aqua{
+    color: #fff;
+    background-color: aqua !important;
+    border-color: aqua !important;
+}
+
+/****************Nav bar li custom class ***********************/
+.navbar-default .navbar-nav > li > a:hover {
+     /*padding-bottom:2px !important;*/
+     text-decoration: none;
+}
+
+#menu > ul > li > a span:hover {
+    display:inline-block;
+    border-bottom: 2px solid #23c2e9;  
+    
+}
+
+.navbar-default .navbar-nav > li > a:active { 
+    /*background-color: yellow;*/
+}
+
+/********* Nav bar Buttom Custom shedow*********/
+
+/*#custom-nav {
+    -webkit-box-shadow: 20px 20px 20px #FC0;
+    -moz-box-shadow:    20px 20px 20px #FC0;
+    box-shadow:         20px 20px 20px #FC0;
+    z-index:999;
+}*/
+
+.navbar {
+    -webkit-box-shadow: 0 8px 6px -6px #999;
+    -moz-box-shadow: 0 8px 6px -6px #999;
+    box-shadow: 0 8px 6px -6px #999;
+
+    min-height:70px;
+   
+    width:100%;
+    border-radius:0px !important;
+    /* the rest of your styling */
+}
+/*. {
+
+    min-height:50px !important;
+}*/
+
+
+.btn-add {
+width:120px;
+height:40px;
+}
+
+.batch-action {
+    background-color: #19c6de;
+    border-radius: 0px !important;
+    color: white;
+    width: 160px;
+    height: 30px;
+}
+
+.batch-action:hover {
+            color:blue;
+    }
+
+.dt-dropdown {
+  padding:0px !important;
+ /* width:60% !important;*/
+  height:24px;
+  border:1px solid #d5d4d4 !important;
+  text-align:right !important;
+  border-radius:5px;
+}
+
+.action-btn {
+width:150px;
+background-color:#19c6de;
+border-radius:0px !important;
+color:white;
+height: 30px;
+
+}
+.action-btn:hover {
+    color:blue;
+    background-color:#d5d4d4;
+    border:1px solid #19c6de;
+    }
+
+.action-click {
+    background:#fff !important;    
+    color:#19c6de !important;
+    border:1px solid #19c6de;
+}
+.action-nonclick {
+    background: #19c6de !important;
+    color: #fff !important;
+}
+
+/********Data Table ********/
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #f2f2f4 !important;    
+}
+
+.table-striped > tbody > tr:nth-of-type(even),.table-striped > tbody > tr:nth-of-type(odd) {  
+    color: #9c9c9c;
+    font-size:12px !important;
+}
+
+table.dataTable thead tr {
+  border-bottom: 0;
+}
+table.dataTable {
+  border-collapse: collapse;
+}
+
+.table-bordered > thead > tr > th, .table-bordered > thead > tr > td {
+    border:none !important;
+    border-bottom-width: 1px !important;
+}
+
+.table.dataTable thead th, table.dataTable thead td, .table.dataTable tbody > tr:last-child > td {
+    /* padding: 10px 18px; */
+    border-bottom: 1px solid #d1d1d1 !important;
+}
+
+
+.table > tbody > tr > td {
+  
+     border-top: none !important; 
+}
+
+/**********************/
+
+#example > tobody > tr {
+    font-size:12px !important;
+    color:#999 !important;
+    /* border-collapse: separate !important; */
+}
+
+/*************************Check Box**************************/
+
+.checkBox {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkBox input {
+    position: absolute;
+    opacity: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #19c6de;
+    border-radius: 5px;
+}
+
+/* On mouse-over, add a grey background color */
+.checkBox:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkBox input:checked ~ .checkmark {
+    /*background-color: #2196F3;*/
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.checkBox input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkBox .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+/*************************Check Box Style End**************************/
+
+/****************************Pagination Style**************************/
+.pagination > .active > a, 
+.pagination > .active > span, 
+.pagination > .active > a:hover, 
+.pagination > .active > span:hover, 
+.pagination > .active > a:focus, 
+.pagination > .active > span:focus {
+    z-index: 3;
+    color: #23c2e9;
+    cursor: default;
+    background-color: #e9f6fe;   /*#337ab7;*/
+    border-color:#b8e9f8 ; /* #337ab7;*/
+    border-radius:4px !important;
+}
+
+.pagination > li a,.pagination > li span,.pagination > .disabled > span,.pagination > .disabled > a{
+    position: relative;
+    float: left;
+    /*padding: 6px 12px;*/
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #f2f2f4;  /* #337ab7;*/
+    text-decoration: none;
+    background-color: #23c2e9;  /* #fff;*/
+    border: 1px solid #ddd;
+
+    border-radius:4px !important;
+    margin: 0 6px 0 0;
+}
+
+
+.pagination > .disabled > span:hover, 
+.pagination > .disabled > span:focus, 
+
+.pagination > .disabled > a:hover, 
+.pagination > .disabled > a:focus {
+    /* color: #777; */
+    color: #f2f2f4 !important;
+  
+    /* background-color: #fff; */
+    background-color: #23c2e9 !important;
+
+    border-color: #ddd;
+    border-radius:4px !important;
+}
+
+pagination > li:first-child > a, .pagination > li:first-child > span {
+     margin-left: 0; 
+     border-radius:4px !important;
+ }
+
+/****************************END Pagination Style**************************/
+
+/***************Customer Page Modal **************/
+
+
+@media (min-width: 768px) {
+    .modal-customer {      
+       width: 100% !important;
+    }
+}
+
+.modal-customer {
+       /*margin-left: 23% !important; */
+       width: 850px !important;
+    }
+
+/*@media (min-width: 768px) {
+    .modal-content {      
+       width: 100% !important;
+    }
+}
+
+.modal-content {     
+       width: 850px !important;
+    }*/
+
+@media (min-width: 768px) {
+    .modal-dialog-Customer {     
+        margin-top: 30px !important;
+        margin-left: 20% !important;
+    }
+}
+
+ .modal-dialog-Customer {            
+        margin-left: 20% !important;
+    }
+
+
+/***********Customer Page***********/
+
+.status {
+  width: 100% !important;
+  height: 34px !important;
+}
+
+/*************** Drop Down Menu ******************/
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+/*************** End Drop Down Menu ******************/

@@ -1,0 +1,233 @@
+﻿
+
+<div class="row">
+  <div class="col-md-6 pull-left margin-top-0">
+   <span>
+       <h3>Manage Customers</h3>
+   </span>
+
+  </div>
+  <div class="col-md-6 margin-top-0">
+      <button class="btn btn-sm btn-success col-xs-2 pull-right margin-top-10 btn-add" data-toggle="modal" data-target="#CustomerModal">
+          <small><span class="glyphicon glyphicon-plus pull-left"></span></small> Add New
+      </button>
+  </div>
+</div>
+
+<hr />
+
+<div class="row margin-buttom-20 margin-top-15">
+  <div class="col-md-6 pull-left">
+          
+          <div class="btn-group" role="group" aria-label="Justified button group">
+              
+                  <button  id="All" type="button" class="btn action-btn ">All</button>         
+            
+                  <button id="Active" type="button" class="btn action-btn">Active</button>
+             
+                  <button id="Closed" type="button"  class="btn action-btn">Closed</button>
+              
+          </div>
+    
+  </div>
+    <div class="col-md-6">
+        <div class="dropdown pull-right">
+            <button class="btn batch-action dropdown-toggle pull-right" type="button" data-toggle="dropdown">
+               Batch Actions
+             <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="active" href="#">Link1</a></li>
+                <li><a class="active" href="#">Link2</a></li>
+                <li><a class="active" href="#">Link3</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<table id="example" class="table table-striped margin-top-10" cellspacing="0" width="100%">   @*table-bordered *@
+    <thead>
+        <tr>
+            <td></td>            
+            <th>Code</th>            
+            <th>Contact Person</th>
+            <th>Contact Number</th>
+            <th>Last Ordered</th>   
+            <th>Email</th>       
+            <th>Status</th>  
+            <th></th>      
+        </tr>
+    </thead>
+       
+</table>
+
+<!-- Modal -->
+@*<div id="myModal" class="modal fade" role="dialog" tabindex="-1" aria-hidden="true">
+  
+
+    @Html.Partial("CustomerAddUpdate")
+
+</div>*@
+
+
+<div id="CustomerModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Customer Add Form</h4>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("Contact")
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+
+    var flag = 0;
+    $(document).ready(function () {
+            
+        if (flag == 0) {
+            $('#Active').addClass("action-click");
+            GetCustomerInfo('Active');
+        }
+        $("div.btn-group button.btn").click(function () {
+            $("div.btn-group").find(".action-click").removeClass("action-click");
+            $(this).addClass("action-click");
+            flag = 1;
+            var id = this.id;
+            GetCustomerInfo(id);
+        });
+    });
+
+
+    function CallChangefunc(e) {
+
+        alert(e);
+        //var stateId = $('#State').val();
+        //$.ajax({
+        //    url: '/Employees/FillCity',
+        //    type: "GET",
+        //    dataType: "JSON",
+        //    data: { State: stateId},
+        //    success: function (cities) {                    
+        //        $("#City").html(""); // clear before appending new list 
+        //        $.each(cities, function (i, city) {
+        //            $("#City").append(
+        //                $('<option></option>').val(city.CityId).html(city.CityName));
+        //        });
+        //    }
+        //});
+    }
+
+
+
+   //below is bootstrap checkbox link
+    //https://jsfiddle.net/gyrocode/j5u40azu/
+
+    function GetCustomerInfo(option) {
+        try {
+
+            var _url = "/Home/LoadData/";
+           // alert(_url);
+
+            var t = $('#example').DataTable({
+                //for row index
+                "columnDefs": [{
+                   
+                    "targets": [0]
+                },
+                ],
+               
+                "pagingType": "full_numbers",
+                //for only 2nd column order.ommit this so any column now searcable
+                "order": [[1, 'asc']],
+                "destroy": true, //must to destroy after load to avoid 'cannot reinitialise datatable' problem
+                "processing": true, // for show progress bar
+                "serverSide": true, // for process server side
+                "filter": false, // this is for disable filter (search box)
+                "orderMulti": false, // for disable multiple column at once
+                "lengthChange": false, //stop filter by 10,15,20,50 row on per page
+
+
+                "ajax": {
+                    "url": "/Home/LoadData/",
+                    "type": "POST",
+                    "datatype": "json",
+                    "data": {
+                        "status": option
+                    }
+                },
+
+
+                "columns": [
+                           {
+                               "data": "Reference", "name": "", "display": "none",
+                               render: function (data, type, row, meta) {
+                                    if ( type === 'display' ) {
+                                        //data = '<input type="checkbox" class="editor-active">';
+                                        data = '<label class="checkBox"><input id="'+data+'" type="checkbox"><span class="checkmark"></span></label>';
+                                       
+                                       }
+                                       return data;
+                                 
+                               }
+                           },   // it is Sr No and data=null I set to prevent display error alert datatables requested unknown parameter '0' for row 0 column 0, also should Display:none
+                        { "data": "Code", "name": "Code", "autoWidth": true },
+
+                        { "data": "ContactPerson", "name": "Contact Person", "autoWidth": true },
+                        { "data": "ContactNumber", "name": "Contact Number", "autoWidth": true },
+                            //
+                        {
+                            "data": "LastOrdered", "name": "Last Ordered", "autoWidth": true,
+                            "render": function (d) {
+                                if (d != null)
+                                    return moment(d).format("DD-MMM-YYYY");
+                                else
+                                    return d;
+                            }
+
+                        },
+                        { "data": "Email", "name": "Email", "autoWidth": true },
+                        {
+                            "data": "Status", "name": "Status", "autoWidth": true                            
+                        },
+
+                        {
+                            "data": "Reference", "name": "", "display": "none",
+                            "render": function (data, type, row, meta) {
+                                if (type === 'display') {
+                                    //style="width:100% !important"
+                                    data = '<select id="dynamic_select" class="from-control pull-right dt-dropdown" name="dynamic_select" onchange="CallChangefunc(this.value)">\n\<option id="" value="">Select Option</option/>\n\
+                                                 <option id="'+data+'" value="'+data+'">Edit Customer</option/>\n\
+                                                 <option id="'+data+'" value="'+data+'">Remove Customer</option/>\n\
+                                                  </select>';
+                                   
+                                }
+                                return data;
+                            }
+                        },
+
+                ]
+            });
+
+        }
+        catch (err) {
+            alert(err.message);
+        }
+    }
+
+
+ 
+</script>
+
+

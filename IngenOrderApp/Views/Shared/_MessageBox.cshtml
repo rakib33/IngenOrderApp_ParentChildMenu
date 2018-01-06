@@ -1,0 +1,29 @@
+﻿@if (ViewBag.tag == "Error")
+{
+    <div class="bs-example">
+        <div class="alert alert-danger fade in">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Error!</strong> @ViewBag.message
+        </div>
+    </div>
+}
+else if (ViewBag.tag == "Success")
+{
+    <div class="bs-example">
+        <div class="alert alert-success fade in">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Success!</strong> @ViewBag.message
+        </div>
+    </div>
+}
+else if (ViewBag.tag == "Info")
+{
+    <div class="bs-example">
+        <div class="alert alert-info fade in">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Success!</strong> @ViewBag.message
+        </div>
+    </div>
+}else{
+
+}

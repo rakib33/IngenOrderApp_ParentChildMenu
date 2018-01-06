@@ -1,0 +1,119 @@
+﻿
+@*  Bootstrap Multi level menu
+    https://codepen.io/ajaypatelaj/pen/prHjD
+    https://stackoverflow.com/questions/15565709/razor-recursive-tree-menu-structure
+*@
+@using IngenOrderApp.Models
+
+@{
+    List<Menu> catagories = new List<Menu>();
+    catagories = ViewBag.Menu;
+    
+  foreach (var item in catagories)
+    {
+        @:<li>
+        
+           if (item.Childrens.Any())
+            {
+                <a id="" class="dropdown-toggle" data-toggle="dropdown" href=""><span>@item.MenuName</span><b class="caret"></b></a>
+            }
+            else
+            {
+                <a id="@item.ControllerName/@item.ActionName" href=""><span>@item.MenuName</span></a>
+            }
+            if (item.Childrens.Any())
+            {
+                <ul class="dropdown-menu multi-level">
+                    @ShowTree(item.Childrens)
+                </ul>
+            }
+        @:</li>
+
+    }
+    ShowTree(catagories);
+}
+
+@helper ShowTree(List<Menu> categories)
+{
+
+    foreach (var item in categories)
+    {
+
+
+      
+         if (item.Childrens.Any())
+         {
+         @:<li class="dropdown-submenu">
+            <a id="" class="dropdown-toggle" data-toggle="dropdown" href=""><span>@item.MenuName</span></a>
+         }
+         else{
+             
+        @:<li>
+            <a id="@item.ControllerName/@item.ActionName" href=""><span>@item.MenuName</span></a>
+            }
+
+            if (item.Childrens.Any())
+            {
+            <ul class="dropdown-menu">
+                @ShowTree(item.Childrens)
+            </ul>
+            }
+       @:</li>
+
+    }
+}
+           @*<li class="active"><a id="Home/Index" href=""><span> Customers</span></a></li>  
+           <li><a id="OrderDeliveries/Index" href=""><span>Orders</span></a></li>
+                <li>
+                    <a id="" href="#" class="dropdown-toggle" data-toggle="dropdown"><span> Menu 1 </span> <b class="caret"></b></a>
+                    <ul class="dropdown-menu multi-level">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>                       
+                        <li class="dropdown-submenu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown</a>
+                            
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Action</a></li>
+                                    <li class="dropdown-submenu">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="dropdown-submenu">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#">Action</a></li>                                               
+                                                    
+                                                    <li><a href="#">One more separated link</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                        </li>
+                    </ul>
+                </li>*@
+                
+          
+
+@*<li><a id="Home/Index" href=""><span> Customers</span></a></li>
+<li><a id="OrderDeliveries/Index" href=""><span>Orders</span></a></li>
+<li><a id="" href=""><span>Invoices</span></a></li>
+<li><a id="Products/Index" href=""><span>Products </span></a></li>
+
+<li class="dropdown">
+    <a id="" href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span> Settings </span>
+    <span class="caret"></span></a>
+    <ul class="dropdown-menu" role="menu">
+        <li><a id="" href="#"><span> Profile </span></a></li>
+
+        <li><a id="" href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Account</a>
+            <ul class="dropdown-menu" role="menu">
+                <li>Abc</li>
+                <li>BDT</li>
+            </ul>
+         
+        </li>
+
+    </ul>
+</li>
+
+<li><a id="Account/LogOff" href="Account/LogOff"><span>Log off </span></a></li>*@
